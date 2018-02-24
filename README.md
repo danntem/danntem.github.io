@@ -1,2 +1,1 @@
 # dannte
-Mythic plus advertisements
