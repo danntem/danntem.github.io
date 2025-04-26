@@ -1,7 +1,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #081018;
+    background-image: url("background.jpg");
+    /*background: #081018;*/
     color: #fff;
 }
 
