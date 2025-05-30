@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Centered Text</title>
+  <title>Toggle Second Line</title>
   <style>
     html, body {
       height: 100%;
@@ -12,13 +12,65 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
       font-family: Arial, sans-serif;
-      font-size: 24px;
       background-color: #f0f0f0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .center-text {
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .second-line {
+      margin-top: 10px;
+      display: none;
+      font-size: 18px;
+    }
+
+    .toggle-button {
+      margin-top: 15px;
+      background: none;
+      border: 1px solid #333;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .toggle-button:hover {
+      background: #ddd;
+    }
+
+    @media (max-width: 300px) {
+      .center-text {
+        white-space: normal;
+      }
     }
   </style>
 </head>
 <body>
-  <div>A Vegan and a vegetarian are jumping of a cliff to see who hit the button first, who wins?</div>
+  <div class="container">
+    <div class="center-text">This text is centered and responsive</div>
+    <div class="second-line" id="secondLine">This is the second line of text</div>
+    <button class="toggle-button" onclick="toggleSecondLine()">Show More</button>
+  </div>
+
+  <script>
+    function toggleSecondLine() {
+      const line = document.getElementById('secondLine');
+      const button = document.querySelector('.toggle-button');
+      const isVisible = line.style.display === 'block';
+      line.style.display = isVisible ? 'none' : 'block';
+      button.textContent = isVisible ? 'Show More' : 'Hide';
+    }
+  </script>
 </body>
 </html>
