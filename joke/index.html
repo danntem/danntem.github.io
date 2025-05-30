@@ -24,32 +24,30 @@
     }
 
     .center-text {
-      font-size: 24px;
+      font-size: 36px;
       white-space: nowrap;
     }
 
     .second-line {
       margin-top: 10px;
       display: none;
-      font-size: 18px;
+      font-size: 38px;
     }
 
     .toggle-button {
       margin-top: 15px;
       background: none;
-      border: 1px solid #333;
       padding: 5px 10px;
       font-size: 14px;
       cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s;
+      transition: background 0.9s;
     }
 
     .toggle-button:hover {
       background: #ddd;
     }
 
-    @media (max-width: 300px) {
+    @media (max-width: 500px) {
       .center-text {
         white-space: normal;
       }
@@ -58,7 +56,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="center-text">A Vegan and a vegetarian are jumping off a cliff to see who hits the bottom first.<br> Who wins?<br><br><br></div>
+    <div class="center-text">A Vegan and a vegetarian are jumping off <br>a cliff to see who hits the bottom first.<br> Who wins?<br><br><br></div>
     <div class="second-line" id="secondLine">Society</div>
     <button class="toggle-button" onclick="toggleSecondLine()">Válasz felfedése</button>
   </div>
