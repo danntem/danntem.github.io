@@ -25,13 +25,12 @@
     }
 
     .center-text {
-      font-size: 24px;
+      font-size: 32px;
       white-space: nowrap;
     }
 
     .second-line {
-      margin-top: 10px;
-      font-size: 18px;
+      font-size: 38px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.9s ease, visibility 0.9s ease;
@@ -42,7 +41,7 @@
       visibility: visible;
     }
 
-    @media (max-width: 300px) {
+    @media (max-width: 400px) {
       .center-text {
         white-space: normal;
       }
@@ -51,7 +50,7 @@
 </head>
 <body>
   <div class="container" onclick="revealSecondLine()">
-    <div class="center-text">A Vegan and a vegetarian are jumping off <br>a cliff to see who hits the bottom first.<br> Who wins?<br><br><br></div>
+    <div class="center-text">A Vegan and a vegetarian are jumping off a cliff <br>to see who hits the bottom first.<br>Who wins?<br></div>
     <div class="second-line" id="secondLine"></div>
   </div>
 
