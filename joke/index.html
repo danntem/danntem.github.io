@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nefu</title>
+  <title>Click to Reveal Text</title>
   <style>
     html, body {
       height: 100%;
@@ -21,33 +21,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      cursor: pointer;
     }
 
     .center-text {
-      font-size: 36px;
+      font-size: 24px;
       white-space: nowrap;
     }
 
     .second-line {
       margin-top: 10px;
-      display: none;
-      font-size: 38px;
+      font-size: 18px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
-    .toggle-button {
-      margin-top: 15px;
-      background: none;
-      padding: 5px 10px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.9s;
+    .second-line.visible {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .toggle-button:hover {
-      background: #ddd;
-    }
-
-    @media (max-width: 500px) {
+    @media (max-width: 300px) {
       .center-text {
         white-space: normal;
       }
@@ -55,19 +50,19 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="center-text">A Vegan and a vegetarian are jumping off <br>a cliff to see who hits the bottom first.<br> Who wins?<br><br><br></div>
-    <div class="second-line" id="secondLine">Society</div>
-    <button class="toggle-button" onclick="toggleSecondLine()">Válasz felfedése</button>
+  <div class="container" onclick="revealSecondLine()">
+    <div class="center-text">This text is centered and responsive</div>
+    <div class="second-line" id="secondLine"></div>
   </div>
 
   <script>
-    function toggleSecondLine() {
+    let revealed = false;
+    function revealSecondLine() {
+      if (revealed) return;
       const line = document.getElementById('secondLine');
-      const button = document.querySelector('.toggle-button');
-      const isVisible = line.style.display === 'block';
-      button.textContent = isVisible ? 'none' : 'block';
-      button.textContent = isVisible ? 'Válasz felfedése' : 'Elrejt';
+      line.textContent = "Here is the new line that just appeared!";
+      line.classList.add('visible');
+      revealed = true;
     }
   </script>
 </body>
