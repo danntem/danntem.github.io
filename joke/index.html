@@ -51,7 +51,7 @@
 </head>
 <body>
   <div class="container" onclick="revealSecondLine()">
-    <div class="center-text">Egy vegán és egy vegetáriánus ugornak le a szakadékba, hogy kiderítsék melyikük ér le hamarabb az aljára.<br><br>Ki fog nyerni?<br><br><br><br><br><br><br></div>
+    <div class="center-text">Egy vegán és egy vegetáriánus ugornak le a szakadékba,<br>hogy kiderítsék melyikük ér le hamarabb az aljára.<br><br>Vajon ki fog nyerni?<br><br><br><br><br><br><br></div>
     <div class="second-line" id="secondLine"></div>
     <!--A vegan and a vegetarian are jumping off a cliff <br>to see who hits the bottom first.<br>Who wins?<br>-->
   </div>
@@ -61,7 +61,7 @@
     function revealSecondLine() {
       if (revealed) return;
       const line = document.getElementById('secondLine');
-      line.textContent = "Society";
+      line.textContent = "A társadalom";
       line.classList.add('visible');
       revealed = true;
     }
