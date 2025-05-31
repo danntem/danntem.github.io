@@ -31,6 +31,7 @@
 
     .second-line {
       font-size: 36px;
+      letter-spacing: 2px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.9s ease, visibility 0.9s ease;
@@ -60,7 +61,7 @@
     function revealSecondLine() {
       if (revealed) return;
       const line = document.getElementById('secondLine');
-      line.textContent = "A társadalom";
+      line.textContent = "A társadalom!";
       line.classList.add('visible');
       revealed = true;
     }
