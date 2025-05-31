@@ -51,7 +51,7 @@
 </head>
 <body>
   <div class="container" onclick="revealSecondLine()">
-    <div class="center-text">This text is centered and responsive</div>
+    <div class="center-text">A Vegan and a vegetarian are jumping off <br>a cliff to see who hits the bottom first.<br> Who wins?<br><br><br></div>
     <div class="second-line" id="secondLine"></div>
   </div>
 
@@ -60,7 +60,7 @@
     function revealSecondLine() {
       if (revealed) return;
       const line = document.getElementById('secondLine');
-      line.textContent = "Here is the new line that just appeared!";
+      line.textContent = "Society";
       line.classList.add('visible');
       revealed = true;
     }
