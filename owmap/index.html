@@ -5,11 +5,11 @@
   <title>Overwtach - Térkép választó</title>
   <style>
     body, input, textarea {
-    font-family: Algerian;
+    font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
     }
     
     body {
-      font-family: Algerian !important;
+      font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
       background: url("./back.jpg") no-repeat center center fixed;
       background-size: cover; /* make image fill the window */
       color: white;
@@ -108,16 +108,19 @@
   <div class="container">
     <div class="column">
       <img src="map1.JPG" alt="Térkép" width="270" height="570" style="vertical-align:middle">
+      <p>Ilios</p>
       <input type="number" min="0" max="10" value="0" oninput="updateBars(0, this)">
       <div class="bars" id="col0"></div>
     </div>
     <div class="column">
       <img src="map2.JPG" alt="Térkép" width="270" height="570" style="vertical-align:middle">
+      <p>Lijiang Tower</p>
       <input type="number" min="0" max="10" value="0" oninput="updateBars(1, this)">
       <div class="bars" id="col1"></div>
     </div>
     <div class="column">
       <img src="map3.JPG" alt="Térkép" width="270" height="570" style="vertical-align:middle">
+      <p>Oasis</p>
       <input type="number" min="0" max="10" value="0" oninput="updateBars(2, this)">
       <div class="bars" id="col2"></div>
     </div>
