@@ -19,6 +19,7 @@
     .container {
       display: flex;
       gap: 50px;
+      margin-top: 100px;
       margin-bottom: 20px;
       background: rgba(0, 0, 0, 0.9); /* semi-transparent overlay for readability */
       padding: 20px;
@@ -101,14 +102,17 @@
 <body>
   <div class="container">
     <div class="column">
+      <img src="map1.jpg" alt="Térkép" width="270" height="570" style="vertical-align:middle">
       <input type="number" min="0" max="10" value="0" oninput="updateBars(0, this)">
       <div class="bars" id="col0"></div>
     </div>
     <div class="column">
+      <img src="map2.jpg" alt="Térkép" width="270" height="570" style="vertical-align:middle">
       <input type="number" min="0" max="10" value="0" oninput="updateBars(1, this)">
       <div class="bars" id="col1"></div>
     </div>
     <div class="column">
+      <img src="map3.jpg" alt="Térkép" width="270" height="570" style="vertical-align:middle">
       <input type="number" min="0" max="10" value="0" oninput="updateBars(2, this)">
       <div class="bars" id="col2"></div>
     </div>
