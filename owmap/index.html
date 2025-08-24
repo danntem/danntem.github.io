@@ -20,7 +20,7 @@
       display: flex;
       gap: 50px;
       margin-bottom: 20px;
-      background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay for readability */
+      background: rgba(205, 199, 171, 0.2); /* semi-transparent overlay for readability */
       padding: 20px;
       border-radius: 12px;
     }
@@ -180,22 +180,29 @@
 
         setTimeout(() => {
           bar.classList.remove("glowing");
-          index++;
-          if (index >= allBars.length) {
-            index = 0;
-            cycleCount++;
+                index++;
+
+        // End of cycle conditions
+        if (
+          (cycleCount < 2 && index >= allBars.length) || // cycles 1 & 2 go full length
+          (cycleCount === 2 && index >= randomNum)       // cycle 3 stops at randomNum
+        ) {
+          index = 0;
+          cycleCount++;
+        }
+
+        if (cycleCount < 3) {
+          animateNext(getDelayForCycle(cycleCount));
+        } else {
+          // Ensure chosen bar is glowing at the end
+          const chosenBar = allBars[randomNum - 1];
+          if (chosenBar) {
+            chosenBar.classList.add("final-glow");
           }
-          if (cycleCount < 3) {
-            animateNext(getDelayForCycle(cycleCount));
-          } else {
-            // Ensure chosen bar is highlighted at the very end
-            const chosenBar = allBars[randomNum - 1];
-            if (chosenBar) {
-              chosenBar.classList.add("final-glow");
-            }
-          }
-        }, delay);
-      }
+        }
+      }, delay);
+    }
+
 
       function getDelayForCycle(cycle) {
         // cycle 0 = 100ms, cycle 1 = 200ms, cycle 2 = 400ms
