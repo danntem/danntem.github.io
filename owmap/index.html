@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Overwtach - Térkép választó</title>
+  <style>
+    body {
+      background: url("./back.jpg") no-repeat center center fixed;
+      background-size: cover; /* make image fill the window */
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      gap: 50px;
+      margin-bottom: 20px;
+      background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay for readability */
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input {
+      width: 60px;
+      padding: 5px;
+      margin-bottom: 10px;
+      text-align: center;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .bars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .bar {
+      width: 40px;
+      height: 80px;
+      border-radius: 8px;
+      background-color: cyan;
+      box-shadow: 0 0 15px cyan;
+      opacity: 0.6;
+      transition: opacity 0.3s, box-shadow 0.3s;
+    }
+
+    .bar.glowing {
+      animation: glow 0.8s ease-in-out;
+    }
+
+    .bar.final-glow {
+      opacity: 1;
+      box-shadow: 0 0 40px cyan, 0 0 80px cyan;
+    }
+
+    @keyframes glow {
+      0% { opacity: 0.6; box-shadow: 0 0 15px cyan; }
+      50% { opacity: 1; box-shadow: 0 0 30px cyan, 0 0 60px cyan; }
+      100% { opacity: 0.6; box-shadow: 0 0 15px cyan; }
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: cyan;
+      color: black;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    button:hover {
+      background-color: #00cccc;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: cyan;
+      text-shadow: 0 0 5px black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="column">
+      <input type="number" min="0" max="10" value="0" oninput="updateBars(0, this)">
+      <div class="bars" id="col0"></div>
+    </div>
+    <div class="column">
+      <input type="number" min="0" max="10" value="0" oninput="updateBars(1, this)">
+      <div class="bars" id="col1"></div>
+    </div>
+    <div class="column">
+      <input type="number" min="0" max="10" value="0" oninput="updateBars(2, this)">
+      <div class="bars" id="col2"></div>
+    </div>
+  </div>
+
+  <button onclick="chooseMap()">Válassz térképet!</button>
+  <div id="result"></div>
+
+  <script>
+    const inputs = document.querySelectorAll("input");
+
+    function updateBars(colIndex, inputEl) {
+      let values = Array.from(inputs).map(inp => parseInt(inp.value) || 0);
+      let total = values.reduce((a, b) => a + b, 0);
+
+      if (total > 10) {
+        let excess = total - 10;
+        inputEl.value = Math.max(0, (parseInt(inputEl.value) || 0) - excess);
+        values[colIndex] = parseInt(inputEl.value);
+      }
+
+      values.forEach((count, i) => {
+        const container = document.getElementById("col" + i);
+        container.innerHTML = "";
+        for (let j = 0; j < count; j++) {
+          const bar = document.createElement("div");
+          bar.className = "bar";
+          container.appendChild(bar);
+        }
+      });
+    }
+
+    function chooseMap() {
+      let values = Array.from(inputs).map(inp => parseInt(inp.value) || 0);
+      let total = values.reduce((a, b) => a + b, 0);
+
+      if (total === 0) {
+        document.getElementById("result").textContent = "Nincs szám megadva!";
+        return;
+      }
+
+      let randomNum = Math.floor(Math.random() * total) + 1;
+      document.getElementById("result").textContent = "Random kiválasztott szám (1 és " + total + " között): " + randomNum;
+
+      const allBars = [
+        ...document.getElementById("col0").children,
+        ...document.getElementById("col1").children,
+        ...document.getElementById("col2").children
+      ];
+
+      // Clear any old highlights
+      allBars.forEach(bar => bar.classList.remove("final-glow"));
+
+      let cycleCount = 0;
+      let index = 0;
+
+      function animateNext(delay) {
+        if (cycleCount >= 3) {
+          // After 3 cycles, keep the chosen bar glowing
+          const chosenBar = allBars[randomNum - 1];
+          if (chosenBar) {
+            chosenBar.classList.add("final-glow");
+          }
+          return;
+        }
+
+        const bar = allBars[index];
+        bar.classList.add("glowing");
+
+        setTimeout(() => {
+          bar.classList.remove("glowing");
+          index++;
+          if (index >= allBars.length) {
+            index = 0;
+            cycleCount++;
+          }
+          if (cycleCount < 3) {
+            animateNext(getDelayForCycle(cycleCount));
+          } else {
+            // Ensure chosen bar is highlighted at the very end
+            const chosenBar = allBars[randomNum - 1];
+            if (chosenBar) {
+              chosenBar.classList.add("final-glow");
+            }
+          }
+        }, delay);
+      }
+
+      function getDelayForCycle(cycle) {
+        // cycle 0 = 100ms, cycle 1 = 200ms, cycle 2 = 400ms
+        return [100, 200, 400][cycle];
+      }
+
+      animateNext(getDelayForCycle(cycleCount));
+    }
+  </script>
+</body>
+</html>
