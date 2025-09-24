@@ -1,5 +1,3 @@
-import WaveSurfer from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.esm.js';
-
 const wavesurfer = WaveSurfer.create({
   container: '#waveform',
   waveColor: '#888',
@@ -10,7 +8,7 @@ const wavesurfer = WaveSurfer.create({
 });
 
 // Load your MP3 file
-wavesurfer.load('track.mp3');
+wavesurfer.load('Last.mp3');
 
 // Play/pause button
 const playPauseBtn = document.getElementById('playPause');
