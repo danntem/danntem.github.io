@@ -1,0 +1,45 @@
+body {
+  background: #121212;
+  font-family: sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.player {
+  width: 600px;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cover img {
+  width: 150px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.info h3, .info p {
+  margin: 5px;
+}
+
+#waveform {
+  margin: 20px 0;
+  height: 100px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#playPause {
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
