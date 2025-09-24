@@ -1,3 +1,5 @@
+import WaveSurfer from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.esm.js';
+
 const wavesurfer = WaveSurfer.create({
   container: '#waveform',
   waveColor: '#888',
